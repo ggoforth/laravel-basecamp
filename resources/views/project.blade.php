@@ -11,6 +11,10 @@
                     {{ $project->description }}
 
                     <div style="margin-top: 30px;">
+                        {!! Form::open(['method' => 'DELETE', 'route' => ['projects.destroy', $project->id]]) !!}
+                        {!! Form::submit('DELETE', ['class' => 'btn btn-danger pull-right']) !!}
+                        {!! Form::close() !!}
+
                         {!! HTML::linkRoute('projects.edit', 'Edit this project', [$project->id], ['class' => 'btn btn-default']) !!}
                     </div>
 				</div>

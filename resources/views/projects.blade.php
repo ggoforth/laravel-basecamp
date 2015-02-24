@@ -5,7 +5,10 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Project List</div>
+				<div class="panel-heading">
+                    {!! HTML::linkRoute('projects.create', '+', [], ['class' => 'btn btn-sm btn-default pull-right']) !!}
+                    Project List
+                </div>
 
 				<div class="panel-body">
                     <ul>

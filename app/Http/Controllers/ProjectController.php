@@ -27,7 +27,7 @@ class ProjectController extends Controller {
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -35,9 +35,12 @@ class ProjectController extends Controller {
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $projDetails = array_except($request->all(), ['_token']);
+        $project = Project::create($projDetails);
+
+        return redirect()->route('projects.show', [$project->id]);
     }
 
     /**
@@ -66,15 +69,15 @@ class ProjectController extends Controller {
 
     /**
      * @param $id
-     * @param ProjectRequest $request
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, Request $request)
     {
         $project = Project::find($id);
-        $update = array_except($request->all(), ['_method', '_token']);
+        $values = array_except($request->all(), ['_method', '_token']);
 
-        $project->update($update);
+        $project->update($values);
 
         return redirect()->route('projects.show', [$id]);
     }
@@ -87,7 +90,10 @@ class ProjectController extends Controller {
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect()->route('projects.index');
     }
 
 }
