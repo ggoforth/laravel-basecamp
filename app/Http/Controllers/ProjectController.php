@@ -82,6 +82,7 @@ class ProjectController extends Controller {
         return redirect()->route('projects.show', [$id]);
     }
 
+
     /**
      * Remove the specified resource from storage.
      *

@@ -6,7 +6,7 @@
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-                    {!! HTML::linkRoute('projects.create', '+', [], ['class' => 'btn btn-sm btn-default pull-right']) !!}
+                    {!! HTML::linkRoute('projects.create', '+', [], ['class' => 'btn btn-xs btn-default pull-right']) !!}
                     Project List
                 </div>
 
