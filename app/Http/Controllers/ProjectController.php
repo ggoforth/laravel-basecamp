@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
 use App\Project;
+use App\Task;
 
 class ProjectController extends Controller {
 
@@ -46,55 +47,58 @@ class ProjectController extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Project $project
      * @return Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        $project = Project::find($id);
         return view('project', compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param Project $project
      * @return Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        $project = Project::find($id);
         return view('edit', compact('project'));
     }
 
     /**
-     * @param $id
+     * @param Project $project
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id, Request $request)
+    public function update(Project $project, Request $request)
     {
-        $project = Project::find($id);
         $values = array_except($request->all(), ['_method', '_token']);
-
         $project->update($values);
-
-        return redirect()->route('projects.show', [$id]);
+        return redirect()->route('projects.show', [$project->id]);
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  Project $project
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        $project = Project::find($id);
         $project->delete();
-
         return redirect()->route('projects.index');
+    }
+
+    public function createTask(Request $request)
+    {
+        //create the task
+        $taskDetails = array_except($request->all(), ['_token']);
+        Task::create($taskDetails);
+
+        //redirect back to projects.show
+        return redirect()->route('projects.show', [$request->get('project_id')]);
     }
 
 }

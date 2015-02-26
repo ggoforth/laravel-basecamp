@@ -8,16 +8,16 @@
 				<div class="panel-heading">{{ $project->title }}</div>
 
 				<div class="panel-body">
-                    {!! Form::open(['route' => ['projects.update', $project->id], 'method' => 'PUT']) !!}
+                    {!! Form::model($project, ['route' => ['projects.update', $project->id], 'method' => 'PUT']) !!}
 
                     <div class="form-group">
                         {!! Form::label('title', 'Project Title'); !!}
-                        {!! Form::text('title', $project->title, ['class' => 'form-control']); !!}
+                        {!! Form::text('title', null, ['class' => 'form-control']); !!}
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('description', 'Project description'); !!}
-                        {!! Form::textarea('description', $project->description, ['class' => 'form-control']); !!}
+                        {!! Form::textarea('description', null, ['class' => 'form-control']); !!}
                     </div>
 
                     <div class="form-group">

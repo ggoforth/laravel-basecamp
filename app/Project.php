@@ -9,4 +9,8 @@ class Project extends Model {
         'description'
     ];
 
+    public function tasks() {
+        return $this->hasMany('App\Task');
+    }
+
 }
