@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::resource('projects', 'ProjectController');
 Route::post('task/create', ['as' => 'task.create', 'uses' => 'ProjectController@createTask']);
 
-//Route::controllers([
-//	'auth' => 'Auth\AuthController',
-//	'password' => 'Auth\PasswordController',
-//]);
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
